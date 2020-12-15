@@ -38,6 +38,24 @@ export const articleSlice = createSlice({
     deleteArticle: (state, { payload: id }) => {
       console.log("게시글 삭제 액션 호출 -- deleteArticle"); // saga 에서 감시용
     },
+    changeRegisterInput: (state, { payload }) => {
+      switch (payload.name) {
+        case "title":
+          return {
+            ...state,
+            title: payload.value,
+          };
+
+        case "content":
+          return {
+            ...state,
+            content: payload.value,
+          };
+
+        default:
+          break;
+      }
+    },
   },
 });
 

@@ -23,24 +23,26 @@ function ArticleDetail(props) {
             <col width="10%" />
             <col width="40%" />
           </colgroup>
-          <tr>
-            <th>번호</th>
-            <td>{props.id}</td>
-            <th>조회수</th>
-            <td>{props.views}</td>
-          </tr>
-          <tr>
-            <th>날짜</th>
-            <td>{new Date(props.date).toLocaleString()}</td>
-          </tr>
-          <tr>
-            <th>제목</th>
-            <td colspan="3">{props.title}</td>
-          </tr>
-          <tr>
-            <th>내용</th>
-            <td colspan="3">{props.content}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>번호</th>
+              <td>{props.id}</td>
+              <th>조회수</th>
+              <td>{props.views}</td>
+            </tr>
+            <tr>
+              <th>날짜</th>
+              <td>{new Date(props.date).toLocaleString()}</td>
+            </tr>
+            <tr>
+              <th>제목</th>
+              <td colSpan="3">{props.title}</td>
+            </tr>
+            <tr>
+              <th>내용</th>
+              <td colSpan="3">{props.content}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div>

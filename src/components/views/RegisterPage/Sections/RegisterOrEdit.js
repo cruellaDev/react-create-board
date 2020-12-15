@@ -14,7 +14,7 @@ function RegisterOrEdit(props) {
         <div style={{ width: "80%", margin: "2rem auto" }}>
           <label>Title: </label>
           <Input
-            onChange={props.handleTitleChange}
+            onChange={props.handleRegisterChange}
             value={props.titleValue}
             type="text"
             name="title"
@@ -22,7 +22,7 @@ function RegisterOrEdit(props) {
           <hr></hr>
           <TextArea
             rows="30"
-            onChange={props.handleContentChange}
+            onChange={props.handleRegisterChange}
             value={props.contentValue}
             name="content"
           />

@@ -18,8 +18,6 @@ function RegisterPage(props) {
     shallowEqual
   );
 
-  const [TitleValue, setTitleValue] = useState(title);
-  const [ContentValue, setContentValue] = useState(content);
   const [IsForUpdate, setIsForUpdate] = useState(false);
 
   useEffect(() => {
@@ -28,44 +26,34 @@ function RegisterPage(props) {
       dispatch(articleActions.fetchArticle(props.match.params.articleId));
       setIsForUpdate(true);
     }
-    setTitleValue(title);
-    setContentValue(content);
   }, [id]);
 
-  const onTitleChange = (event) => {
-    setTitleValue(event.currentTarget.value);
-  };
-
-  const onContentChange = (event) => {
-    setContentValue(event.currentTarget.value);
+  const onRegisterChange = (event) => {
+    const { name, value } = event.target;
+    dispatch(articleActions.changeRegisterInput({ name: name, value: value }));
   };
 
   const onSubmitArticle = (event) => {
     event.preventDefault();
 
-    if (TitleValue === "" || TitleValue === null || TitleValue === undefined) {
+    if (title === "" || title === null || title === undefined) {
       alert("제목을 작성하십시오.");
       return false;
     }
 
-    if (
-      ContentValue === "" ||
-      ContentValue === null ||
-      ContentValue === undefined
-    ) {
+    if (content === "" || content === null || content === undefined) {
       alert("내용을 작성하십시오.");
       return false;
     }
 
     const article = {
       id: id, ///
-      title: TitleValue,
-      content: ContentValue,
+      title: title,
+      content: content,
       views: views,
       date: date,
       editDate: IsForUpdate ? Date.now() : editDate,
     };
-    // console.log(article);
 
     if (IsForUpdate) {
       dispatch(articleActions.updateArticle(article));
@@ -77,10 +65,9 @@ function RegisterPage(props) {
   return (
     <>
       <RegisterOrEdit
-        titleValue={TitleValue}
-        contentValue={ContentValue}
-        handleTitleChange={onTitleChange}
-        handleContentChange={onContentChange}
+        titleValue={title}
+        contentValue={content}
+        handleRegisterChange={onRegisterChange}
         handleSubmit={onSubmitArticle}
         updateRequest={IsForUpdate}
       />
